@@ -1,7 +1,11 @@
+from dlp.chestionare.models import Test
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 def index(request):
-	return HttpResponse("Hello world")
+	test_list = Test.objects.all().order_by('name')
+	return render_to_response('index.html',
+				{'test_list': test_list})
 
 def test(request, test_id):
 	return HttpResponse("This is test %s." % test_id)
