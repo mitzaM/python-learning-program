@@ -1,0 +1,6 @@
+<h1>{{ questionnaire.description }}</h1>
+{% if page_list %}
+	<input type="button" onclick="location.href='/chestionare/{{ questionnaire.id }}/page/1/'" value="Start test"/>
+{% else %}
+	<p>There are no pages in this questionnaire</p>
+{% endif %}

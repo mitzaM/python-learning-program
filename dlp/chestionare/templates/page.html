@@ -1,0 +1,17 @@
+<h1>Page {{ page.order }}</h1>
+{% if question_list %}
+<form action="/chestionare/{{ questionnaire.id }}/page/{{ page.order }}/answer/" method="post">
+	{% csrf_token %}
+	<ol>
+	{% for question in question_list %}
+	<li>{{ question.text }}<br>
+		{% for response in question.response_set.all %}
+		<input type="radio" name="question{{ question.id }}" id="response{{ forloop.counter }}" value="{{ response.id }}" />
+		<label for="response{{ forloop.counter }}">{{ response.text }}</label><br>
+		{% endfor %}
+	</li><br>
+	{% endfor %}
+	</ol>
+<input type="submit" value="Answer" />
+</form>
+{% endif %}
