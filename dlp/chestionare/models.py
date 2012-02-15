@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Test(models.Model):
+class Quest(models.Model):
 	name = models.CharField(max_length = 200)
 	description = models.CharField(max_length = 200)
 	def __unicode__(self):
@@ -10,9 +10,11 @@ class Test(models.Model):
 
 class Page(models.Model):
 	order = models.IntegerField()
-	test = models.ForeignKey(Test)
+	quest = models.ForeignKey(Quest)
 	def __unicode__(self):
 		return str(self.order)
+	class Meta:
+		ordering = ['order']
 
 class Question(models.Model):
 	text = models.CharField(max_length = 200)
@@ -23,9 +25,11 @@ class Question(models.Model):
 class Result(models.Model):
 	text = models.CharField(max_length = 200)
 	limit = models.IntegerField()
-	test = models.ForeignKey(Test)
+	quest = models.ForeignKey(Quest)
 	def __unicode__(self):
 		return self.text
+	class Meta:
+		ordering = ['limit']
 
 class Response(models.Model):
 	text = models.CharField(max_length = 200)
