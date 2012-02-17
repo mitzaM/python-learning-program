@@ -1,6 +1,3 @@
 <h1>{{ questionnaire.description }}</h1>
-<ul>
-{% for result in result_list %}
-	<li>{{ result.text }}</li>
-{% endfor %}
-</ul>
+<p>Congratulations, you have {{ score }} points: {{ result }}</p>
+<input type="button" onclick="location.href='/chestionare/'" value="Return to tests list"/>
