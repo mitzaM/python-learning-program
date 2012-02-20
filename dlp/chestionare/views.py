@@ -39,7 +39,10 @@ def results(request, quest_id):
 	q = get_object_or_404(Quest, pk = quest_id)
 	score = request.session['total_score']
 	result_list = q.result_set.all();
-	result = result_list[0]
+	if result_list.count() > 0:
+		result = result_list[0]
+	else:
+		result = ""
 	for i in range(result_list.count() - 1):
 		if score >= result_list[i].limit:
 			result = result_list[i+1]
